@@ -11,7 +11,7 @@ const Loader = () => {
             src="/logo.png"
             />
         </div>
-        <p className="text-sm text-muted-foreground">MyAI is thinking...</p>
+        <p className="text-sm mt-2  text-muted-foreground">MyAI is thinking...</p>
     </div>
   )
 }
