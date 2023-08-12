@@ -53,6 +53,6 @@ await increaseApiLimit()
 return NextResponse.json(response.data.data)
     }catch(error){
         console.log("[IMAGE_ERROR]",error)
-        return new NextResponse("idhar se aa raha he!",{status:500})
+        return new NextResponse("internal error",{status:500})
     }
 }

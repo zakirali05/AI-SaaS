@@ -42,6 +42,9 @@ export async function POST(req: Request) {
     return NextResponse.json(response.data.choices[0].message);
   } catch (error) {
     console.log("[CONVERSATION_ERROR]", error);
-    return new NextResponse("idhar se aa raha he!", { status: 500 });
+    return new NextResponse("internal error", { status: 500 });
   }
 }
+
+
+
