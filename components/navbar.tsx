@@ -11,12 +11,18 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import MobileSidebar from "./mobile-sidebar"
-const Navbar = () => {
+import { getApiLimitCount } from "@/lib/api-limit"
+
+
+interface sidebarProps {
+  apiLimitCount : number
+}
+const Navbar = ({apiLimitCount=0}:sidebarProps) => {
 
   const { setTheme } = useTheme()
   return (
     <div className="flex items-center p-4">
-    <MobileSidebar/>
+    <MobileSidebar apiLimitCount={apiLimitCount} />
         <div className="flex w-full justify-end items-center gap-3">
           <div>
           <DropdownMenu>

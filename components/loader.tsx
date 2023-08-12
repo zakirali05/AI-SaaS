@@ -9,6 +9,7 @@ const Loader = () => {
             alt="Logo"
             fill
             src="/logo.png"
+            className="rounded-full"
             />
         </div>
         <p className="text-sm mt-2  text-muted-foreground">MyAI is thinking...</p>

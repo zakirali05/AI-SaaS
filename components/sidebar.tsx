@@ -4,6 +4,9 @@ import Link from 'next/link'
 import {LayoutDashboard,MessageSquare,ImageIcon,VideoIcon,Music,Code,Settings} from "lucide-react"
 import { cn } from '@/lib/utils'
 import {usePathname} from "next/navigation"
+import FreeCounter from './free-counter'
+
+
 
 const routes =[
     {
@@ -50,7 +53,11 @@ const routes =[
     },
 ]
 
-const Sidebar = () => {
+interface sidebarProps {
+    apiLimitCount : number
+}
+
+const Sidebar = ({apiLimitCount=0}:sidebarProps) => {
 const pathname = usePathname()
 
   return (
@@ -83,6 +90,7 @@ const pathname = usePathname()
                 ))}
             </div>
         </div>
+        <FreeCounter apiLimitCount={apiLimitCount} />
     </div>
   )
 }

@@ -14,9 +14,10 @@ import { useState } from "react";
 import {Empty} from "@/components/empty";
 import Loader from "@/components/loader";
 import { cn } from "@/lib/utils";
+import { useProModel } from "@/hooks/use-pro-model";
 
 const VideoPage = () => {
-
+const proModal = useProModel()
 const router = useRouter()
 const [video,setVideo] = useState<string>()
 
@@ -38,6 +39,9 @@ form.reset()
 
   }catch(error:any){
     // TODO: Open pro model
+    if(error?.response?.status===403){
+      proModal.onOpen()
+    }
     console.log(error)
   }finally{
 router.refresh()

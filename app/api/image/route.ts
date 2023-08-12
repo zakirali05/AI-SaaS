@@ -1,3 +1,4 @@
+import { cheackApiLimit, increaseApiLimit } from "@/lib/api-limit"
 import { auth } from "@clerk/nextjs"
 import { NextResponse } from "next/server"
 import { Configuration,OpenAIApi} from "openai"
@@ -36,6 +37,11 @@ if(!amount){
 if(!resolution){
     return new NextResponse("Resolution is required",{status:400})
 }
+const freeTrial = await cheackApiLimit();
+
+    if (!freeTrial) {
+      return new NextResponse("Free trial has expeired", { status: 403 });
+    }
 
 
 const response =  await openai.createImage({
@@ -43,7 +49,7 @@ prompt,
 n : parseInt(amount,10),
 size:resolution
 });
-
+await increaseApiLimit()
 return NextResponse.json(response.data.data)
     }catch(error){
         console.log("[IMAGE_ERROR]",error)

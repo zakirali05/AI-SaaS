@@ -23,8 +23,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Card, CardFooter } from "@/components/ui/card";
+import { useProModel } from "@/hooks/use-pro-model";
 
 const Imagee = () => {
+  const proModal = useProModel()
   const router = useRouter();
   const [images, setImages] = useState<string[]>([]);
 
@@ -48,6 +50,9 @@ const Imagee = () => {
       form.reset();
     } catch (error: any) {
       // TODO: Open pro model
+      if(error?.response?.status===403){
+        proModal.onOpen()
+      }
       console.log(error);
     } finally {
       router.refresh();
